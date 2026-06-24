@@ -1,0 +1,2 @@
+model/artifacts/distilbert-imdb/*.safetensors filter=lfs diff=lfs merge=lfs -text
+model/artifacts/distilbert-imdb/*.bin filter=lfs diff=lfs merge=lfs -text

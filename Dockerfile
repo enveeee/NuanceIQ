@@ -25,7 +25,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 COPY --from=builder /install /usr/local
 COPY api/ ./api/
-RUN mkdir -p ./model/artifacts/distilbert-imdb
+COPY model/artifacts/ ./model/artifacts/
 # COPY model/artifacts/ ./model/artifacts/
 
 EXPOSE 8000

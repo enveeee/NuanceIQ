@@ -40,3 +40,5 @@ Thumbs.db
 
 # Docker
 *.log
+
+model/artifacts/distilbert-imdb/checkpoints/
