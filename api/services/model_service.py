@@ -22,7 +22,10 @@ class ModelService:
         hub_model_id = "nidhiiiv/nuanceiq-distilbert-imdb"
         logger.info(f"Loading model from HuggingFace Hub: {hub_model_id} on {self.device}")
         self.tokenizer = DistilBertTokenizerFast.from_pretrained(hub_model_id)
-        self.model = DistilBertForSequenceClassification.from_pretrained(hub_model_id)
+        self.model = DistilBertForSequenceClassification.from_pretrained(
+        hub_model_id,
+        torch_dtype=torch.float32,
+        low_cpu_mem_usage=True)
         self.model.to(self.device)
         self.model.eval()
         self._loaded = True
