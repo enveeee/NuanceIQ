@@ -19,17 +19,10 @@ class ModelService:
         self._loaded = False
 
     def load(self):
-        model_path = Path(settings.model_path)
-        if not model_path.exists():
-            raise FileNotFoundError(
-                f"Model not found at {model_path}. "
-                f"Run: python model/train.py"
-            )
-        logger.info(f"Loading model from {model_path} on {self.device}")
-        self.tokenizer = DistilBertTokenizerFast.from_pretrained(str(model_path))
-        self.model = DistilBertForSequenceClassification.from_pretrained(
-            str(model_path)
-        )
+        hub_model_id = "nidhiiiv/nuanceiq-distilbert-imdb"
+        logger.info(f"Loading model from HuggingFace Hub: {hub_model_id} on {self.device}")
+        self.tokenizer = DistilBertTokenizerFast.from_pretrained(hub_model_id)
+        self.model = DistilBertForSequenceClassification.from_pretrained(hub_model_id)
         self.model.to(self.device)
         self.model.eval()
         self._loaded = True

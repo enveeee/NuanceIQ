@@ -3,6 +3,10 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
+#RUN apt-get update && apt-get install -y --no-install-recommends git git-lfs \
+    #&& git lfs install \
+    #&& rm -rf /var/lib/apt/lists/*
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
@@ -25,7 +29,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 COPY --from=builder /install /usr/local
 COPY api/ ./api/
-COPY model/artifacts/ ./model/artifacts/
+#COPY model/artifacts/ ./model/artifacts/
 # COPY model/artifacts/ ./model/artifacts/
 
 EXPOSE 8000
